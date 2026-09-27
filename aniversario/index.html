@@ -209,6 +209,8 @@
   .result .actions { display: flex; flex-wrap: wrap; gap: 10px; }
 
   footer { padding-block: 40px 56px; border-top: 1px solid var(--line); text-align: center; color: var(--muted); }
+  footer { display: grid; gap: 8px; justify-items: center; }
+  .footer-photo { width: 220px; max-width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: center 35%; border-radius: 999px 999px 18px 18px; margin-bottom: 16px; }
   footer .big { font-family: var(--display); font-size: 1.6rem; color: var(--ink); }
 
   @media (max-width: 820px) {
@@ -473,16 +475,16 @@
         <strong>Listo. Este es tu mensaje:</strong>
         <pre id="msg-out"></pre>
         <div class="actions">
-          <a class="btn" id="wa" href="#" target="_blank" rel="noopener">Enviar al 092 786 001</a>
-          <a class="btn ghost" id="wa2" href="#" target="_blank" rel="noopener">Enviar al 092 786 100</a>
+          <a class="btn" id="wa" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
           <button class="btn ghost" type="button" id="copy">Copiar texto</button>
         </div>
-        <p class="note" id="copy-note">Si podés, mandalo a los dos. Si WhatsApp no se abre, copiá el texto y mandalo al 092 786 001.</p>
+        <p class="note" id="copy-note">Se manda al 092 786 001. Si WhatsApp no se abre, copiá el texto y mandalo a ese número.</p>
       </div>
     </form>
   </section>
 
   <footer>
+    <img class="footer-photo" src="fotos/nosotros-bn.jpg" alt="Selfie en blanco y negro de Santi y Floppy con anteojos de sol">
     <p class="big">Los esperamos en Bella Vista</p>
     <p>Santi &amp; Floppy · 23 al 26 de octubre de 2026</p>
   </footer>
@@ -501,8 +503,8 @@
 </div>
 
 <script>
-  // Números que reciben las confirmaciones (Uruguay: 598 + número sin el 0)
-  const WHATSAPP = ["59892786001", "59892786100"];
+  // Número que recibe las confirmaciones (Uruguay: 598 + número sin el 0)
+  const WHATSAPP = "59892786001";
 
   // Cuenta regresiva (hora de Uruguay, UTC-3)
   (function () {
@@ -559,8 +561,7 @@
     const text = lines.join("\n");
 
     document.getElementById("msg-out").textContent = text;
-    document.getElementById("wa").href = "https://wa.me/" + WHATSAPP[0] + "?text=" + encodeURIComponent(text);
-    document.getElementById("wa2").href = "https://wa.me/" + WHATSAPP[1] + "?text=" + encodeURIComponent(text);
+    document.getElementById("wa").href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(text);
     const res = document.getElementById("result");
     res.hidden = false;
     res.scrollIntoView({ behavior: "smooth", block: "nearest" });
