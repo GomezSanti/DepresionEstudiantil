@@ -223,7 +223,7 @@
     </div>
     <div class="ticket">
       <div><span class="k">Llegada</span><span class="v">Vie 23 oct<small>desde las 12:00</small></span></div>
-      <div><span class="k">Vuelta</span><span class="v">Lun 26 oct<small>después del desayuno</small></span></div>
+      <div><span class="k">Reserva hasta</span><span class="v">Lun 26 oct<small>a las 10:00</small></span></div>
       <div><span class="k">Dónde</span><span class="v">Bella Vista<small>Maldonado, Uruguay</small></span></div>
       <div><span class="k">Faltan</span><span class="v" id="countdown">— días<small>para el finde</small></span></div>
     </div>
@@ -309,8 +309,8 @@
         <header><div><div class="day">Lunes</div><div class="date">26 oct</div></div>
           <svg class="die" viewBox="0 0 34 34" aria-hidden="true"><rect x="2" y="2" width="30" height="30" rx="7"/><circle cx="10.5" cy="10.5" r="3"/><circle cx="23.5" cy="10.5" r="3"/><circle cx="10.5" cy="23.5" r="3"/><circle cx="23.5" cy="23.5" r="3"/></svg></header>
         <ul class="moves">
-          <li><span class="when">Mañana</span><span class="what">Desayuno largo</span></li>
-          <li><span class="when">Mediodía</span><span class="what">Orden y vuelta</span></li>
+          <li><span class="when">Temprano</span><span class="what">Desayuno</span></li>
+          <li><span class="when">10:00</span><span class="what">Entregamos la casa</span></li>
         </ul>
       </article>
     </div>
@@ -453,7 +453,7 @@
   // Cuenta regresiva (hora de Uruguay, UTC-3)
   (function () {
     const start = new Date("2026-10-23T12:00:00-03:00");
-    const end = new Date("2026-10-26T15:00:00-03:00");
+    const end = new Date("2026-10-26T10:00:00-03:00");
     const el = document.getElementById("countdown");
     const now = new Date();
     let big, small;
