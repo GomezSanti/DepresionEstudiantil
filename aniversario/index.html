@@ -447,7 +447,7 @@
         <div class="chips">
           <label><input type="radio" name="plan" id="p-stay" value="Me quedo a dormir">Me quedo a dormir</label>
           <label><input type="radio" name="plan" id="p-day" value="Voy por el día">Voy por el día</label>
-          <label><input type="radio" name="plan" id="p-no" value="Esta vez no puedo">Esta vez no puedo</label>
+          <label><input type="radio" name="plan" id="p-no" value="Esta vez no puedo, pero los tkm">Esta vez no puedo, pero los tkm</label>
         </div>
       </fieldset>
       <fieldset id="days-set">
@@ -544,7 +544,7 @@
   const daysSet = document.getElementById("days-set");
   form.addEventListener("change", () => {
     const plan = form.querySelector("input[name=plan]:checked");
-    daysSet.hidden = plan && plan.value === "Esta vez no puedo";
+    daysSet.hidden = plan && plan.value === "Esta vez no puedo, pero los tkm";
   });
 
   form.addEventListener("submit", (e) => {
@@ -556,7 +556,7 @@
     err.textContent = "";
     if (!name) { err.textContent = "Poné tu nombre así sabemos quién sos."; return; }
     if (!plan) { err.textContent = "Elegí si te quedás, venís por el día o no podés."; return; }
-    const coming = plan.value !== "Esta vez no puedo";
+    const coming = plan.value !== "Esta vez no puedo, pero los tkm";
     if (coming && days.length === 0) { err.textContent = "Marcá al menos un día."; return; }
 
     const lines = ["¡Hola Santi y Floppy! Confirmo para el aniversario en Bella Vista 🎉", "", "Nombre: " + name, "Plan: " + plan.value];
