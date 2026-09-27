@@ -108,9 +108,16 @@
   }
   .ph.big { grid-column: span 2; grid-row: span 2; }
   .ph.wide { grid-column: span 2; }
-  .hero-photo { margin: 0; border-radius: 18px; overflow: hidden; aspect-ratio: 16 / 6; max-width: 100%; background: var(--sea-soft); }
-  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 60%; display: block; }
-  @media (max-width: 520px) { .hero-photo { aspect-ratio: 4 / 3; } }
+  .hero-main { display: grid; grid-template-columns: 1.25fr 1fr; gap: 32px; align-items: center; }
+  .hero-main .hero-grid { grid-template-columns: 1fr; gap: 20px; }
+  .hero-main .fifteen { justify-self: start; }
+  .hero-photo { margin: 0; border-radius: 18px; overflow: hidden; aspect-ratio: 4 / 5; max-width: 100%; max-height: 620px; background: var(--ink); justify-self: end; width: 100%; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 70%; display: block; }
+  @media (max-width: 820px) { .hero-main { grid-template-columns: 1fr; } .hero-photo { aspect-ratio: 4 / 5; justify-self: stretch; } }
+  .polaroid { margin: 0; background: var(--paper); padding: 10px 10px 14px; border-radius: 6px; box-shadow: 0 10px 30px rgba(23,48,63,.14); transform: rotate(2deg); display: grid; gap: 8px; max-width: 360px; justify-self: center; }
+  .polaroid img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 40%; border-radius: 3px; }
+  .polaroid figcaption { font-family: var(--display); color: var(--muted); text-align: center; font-size: 1rem; }
+  @media (prefers-reduced-motion: reduce) { .polaroid { transform: none; } }
   .lightbox {
     position: fixed; inset: 0; z-index: 50; background: rgba(12,26,34,.92);
     display: grid; grid-template-rows: 1fr auto; gap: 12px;
@@ -237,14 +244,16 @@
         <a href="#confirmar">Confirmar</a>
       </nav>
     </div>
-    <div class="hero-grid">
-      <div class="fifteen" aria-hidden="true">15</div>
-      <div>
-        <h1>Santi <span class="amp">&amp;</span> Floppy</h1>
-        <p class="hero-sub">Cumplimos 15 años juntos y lo queremos festejar con ustedes: un fin de semana en una casa en Bella Vista.</p>
+    <div class="hero-main">
+      <div class="hero-grid">
+        <div class="fifteen" aria-hidden="true">15</div>
+        <div>
+          <h1>Santi <span class="amp">&amp;</span> Floppy</h1>
+          <p class="hero-sub">Quince años juntos. Y queremos festejarlo como más nos gusta: con ustedes, un fin de semana en Bella Vista, sin apuro y con tiempo para todo.</p>
+        </div>
       </div>
+      <figure class="hero-photo"><img src="fotos/nosotros-estrellas.jpg" alt="Santi y Floppy abrazados en un banco, de espaldas, bajo un cielo lleno de estrellas"></figure>
     </div>
-    <figure class="hero-photo"><img src="fotos/camino-al-mar.jpg" alt="Calle de Bella Vista que baja hasta el mar"></figure>
     <div class="ticket">
       <div><span class="k">Llegada</span><span class="v">Vie 23 oct<small>desde las 12:00</small></span></div>
       <div><span class="k">Reserva hasta</span><span class="v">Lun 26 oct<small>a las 10:00</small></span></div>
@@ -259,11 +268,13 @@
     <div class="letter">
       <div class="body-text">
         <h2>Quince años se festejan con amigos</h2>
-        <p style="margin-top:18px">Alquilamos una casa en el balneario Bella Vista y queremos pasar el fin de semana con la gente que estuvo cerca en todo este tiempo. No hay fiesta ni protocolo: pastas, pizzas, juegos de caja, playa y charla hasta tarde.</p>
-        <p>Pueden venir todo el finde o darse una vuelta por el día. Lo único que les pedimos es que confirmen, así organizamos las camas y la comida.</p>
-        <p class="sign">Santi &amp; Floppy</p>
+        <p style="margin-top:18px">Hace quince años empezamos esta historia, y ustedes estuvieron en muchos de sus capítulos. Por eso no se nos ocurrió mejor forma de festejarlo que juntarnos todos en una casa en Bella Vista.</p>
+        <p>No hay fiesta ni protocolo. Hay pastas, pizzas, juegos de caja, mate en el pasto y charlas que se estiran hasta cualquier hora.</p>
+        <p>Vengan el finde entero o solo un rato, como les quede mejor. Lo único que les pedimos es que nos confirmen, así armamos las camas y calculamos la comida.</p>
+        <p class="sign">Los esperamos con muchas ganas,<br>Santi &amp; Floppy</p>
       </div>
       <div class="options">
+        <figure class="polaroid"><img src="fotos/nosotros-pisa.jpg" alt="Selfie de Santi y Floppy en lo alto de una torre, con cúpulas de fondo"><figcaption>Nosotros, de viaje</figcaption></figure>
         <div class="opt"><strong>Quedarte a dormir</strong><span>Venís el viernes o el sábado y te quedás las noches que quieras. Sábanas y toallas hay.</span></div>
         <div class="opt"><strong>Venir por el día</strong><span>Caés cuando quieras, comés, jugás y volvés. También vale.</span></div>
         <div class="opt"><strong>La casa ya está paga</strong><span>No tienen que poner plata para el alojamiento. Eso corre por nuestra cuenta.</span></div>
@@ -292,6 +303,7 @@
       <button type="button" class="ph" data-src="fotos/bano-2.jpg" data-cap="Baño"><img src="fotos/bano-2.jpg" alt="Baño" loading="lazy"><span class="cap">Baño</span></button>
       <button type="button" class="ph wide" data-src="fotos/patio.jpg" data-cap="Patio"><img src="fotos/patio.jpg" alt="Patio" loading="lazy"><span class="cap">Patio</span></button>
       <button type="button" class="ph wide" data-src="fotos/jardin.jpg" data-cap="Jardín"><img src="fotos/jardin.jpg" alt="Jardín" loading="lazy"><span class="cap">Jardín</span></button>
+      <button type="button" class="ph wide" data-src="fotos/camino-al-mar.jpg" data-cap="El camino al mar"><img src="fotos/camino-al-mar.jpg" alt="El camino al mar" loading="lazy"><span class="cap">El camino al mar</span></button>
     </div>
     <p class="note">Tocá una foto para verla grande.</p>
     <h3>Las tres casas</h3>
@@ -461,10 +473,11 @@
         <strong>Listo. Este es tu mensaje:</strong>
         <pre id="msg-out"></pre>
         <div class="actions">
-          <a class="btn" id="wa" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+          <a class="btn" id="wa" href="#" target="_blank" rel="noopener">Enviar al 092 786 001</a>
+          <a class="btn ghost" id="wa2" href="#" target="_blank" rel="noopener">Enviar al 092 786 100</a>
           <button class="btn ghost" type="button" id="copy">Copiar texto</button>
         </div>
-        <p class="note" id="copy-note">Si WhatsApp no se abre, copiá el texto y mandánoslo vos.</p>
+        <p class="note" id="copy-note">Si podés, mandalo a los dos. Si WhatsApp no se abre, copiá el texto y mandalo al 092 786 001.</p>
       </div>
     </form>
   </section>
@@ -488,9 +501,8 @@
 </div>
 
 <script>
-  // Número de WhatsApp que recibe las confirmaciones (formato internacional, sin + ni espacios, ej: 59899123456).
-  // Si queda vacío, WhatsApp abre para elegir el contacto.
-  const WHATSAPP = "";
+  // Números que reciben las confirmaciones (Uruguay: 598 + número sin el 0)
+  const WHATSAPP = ["59892786001", "59892786100"];
 
   // Cuenta regresiva (hora de Uruguay, UTC-3)
   (function () {
@@ -547,7 +559,8 @@
     const text = lines.join("\n");
 
     document.getElementById("msg-out").textContent = text;
-    document.getElementById("wa").href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(text);
+    document.getElementById("wa").href = "https://wa.me/" + WHATSAPP[0] + "?text=" + encodeURIComponent(text);
+    document.getElementById("wa2").href = "https://wa.me/" + WHATSAPP[1] + "?text=" + encodeURIComponent(text);
     const res = document.getElementById("result");
     res.hidden = false;
     res.scrollIntoView({ behavior: "smooth", block: "nearest" });
