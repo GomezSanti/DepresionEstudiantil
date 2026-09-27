@@ -425,10 +425,6 @@
         </div>
       </div>
       <div class="field">
-        <label for="f-food">¿Alguna restricción con la comida?</label>
-        <input type="text" id="f-food" placeholder="Vegetariano, celíaco, alergias…">
-      </div>
-      <div class="field">
         <label for="f-msg">Un mensaje para nosotros (opcional)</label>
         <textarea id="f-msg" placeholder="Lo que quieras decirnos"></textarea>
       </div>
@@ -506,8 +502,6 @@
       lines.push("Somos: " + (document.getElementById("f-people").value || "1"));
       const car = document.getElementById("f-car").value;
       if (car) lines.push("Transporte: " + car);
-      const food = document.getElementById("f-food").value.trim();
-      if (food) lines.push("Comida: " + food);
     }
     const msg = document.getElementById("f-msg").value.trim();
     if (msg) lines.push("", msg);
