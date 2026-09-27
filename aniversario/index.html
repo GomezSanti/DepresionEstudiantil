@@ -113,6 +113,12 @@
   }
   .amen svg { flex: none; width: 24px; height: 24px; stroke: var(--sea); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
   ul.amen { padding: 0; margin: 0; }
+  .houses { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .house { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; display: grid; gap: 4px; }
+  .hname { font-family: var(--display); font-size: 1.25rem; }
+  .hrooms { font-weight: 700; color: var(--sea); }
+  .hbath { color: var(--muted); font-size: .95rem; }
+  @media (max-width: 640px) { .houses { grid-template-columns: 1fr; } }
   .note { font-size: .92rem; color: var(--muted); }
 
   /* ---------- Plan: tablero ---------- */
@@ -254,20 +260,26 @@
     <p class="lead">Son tres casas en un mismo predio en el balneario Bella Vista: una casa principal y dos cabañas. Acá van las fotos para que se hagan una idea del lugar.</p>
     <div class="gallery">
       <div class="ph big"><span class="cap">Casa principal</span></div>
-      <div class="ph"><span class="cap">Living</span></div>
-      <div class="ph"><span class="cap">Cocina</span></div>
+      <div class="ph"><span class="cap">Living con estufa</span></div>
+      <div class="ph"><span class="cap">Deck techado</span></div>
       <div class="ph wide"><span class="cap">Parrillero</span></div>
       <div class="ph"><span class="cap">Dormitorio</span></div>
       <div class="ph"><span class="cap">Cabañas</span></div>
-      <div class="ph wide"><span class="cap">La playa</span></div>
+      <div class="ph wide"><span class="cap">Patio</span></div>
     </div>
-    <h3>Comodidades</h3>
+    <h3>Las tres casas</h3>
+    <div class="houses">
+      <div class="house"><span class="hname">Casa principal</span><span class="hrooms">2 dormitorios</span><span class="hbath">Baño propio · living con estufa a leña</span></div>
+      <div class="house"><span class="hname">Cabaña chica</span><span class="hrooms">1 dormitorio</span><span class="hbath">Baño propio</span></div>
+      <div class="house"><span class="hname">Cabaña grande</span><span class="hrooms">2 dormitorios</span><span class="hbath">Baño propio</span></div>
+    </div>
+    <p class="note">En total: 5 dormitorios y 3 baños.</p>
+    <h3>Para compartir</h3>
     <ul class="amen">
-      <li><svg viewBox="0 0 24 24"><path d="M3 10l9-6 9 6v10H3z"/><path d="M9 20v-6h6v6"/></svg>Todo el predio para nosotros: casa principal y 2 cabañas</li>
-      <li><svg viewBox="0 0 24 24"><path d="M3 18h18M5 18V9h14v9M8 9V6h8v3"/></svg>Dormitorios y camas <span class="tag">a completar</span></li>
-      <li><svg viewBox="0 0 24 24"><path d="M4 14h16M6 14l1 6h10l1-6M8 10c0-2 2-2 2-4M12 10c0-2 2-2 2-4M16 10c0-2 2-2 2-4"/></svg>Parrillero para el asado</li>
-      <li><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 10h16M8 6h2"/></svg>Cocina equipada</li>
-      <li><svg viewBox="0 0 24 24"><path d="M2 16c2 0 2-1.5 4-1.5S8 16 10 16s2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5M2 20c2 0 2-1.5 4-1.5S8 20 10 20s2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5"/><circle cx="17" cy="6" r="3"/></svg>Cerca de la playa</li>
+      <li><svg viewBox="0 0 24 24"><path d="M4 14h16M6 14l1 6h10l1-6M8 10c0-2 2-2 2-4M12 10c0-2 2-2 2-4M16 10c0-2 2-2 2-4"/></svg>Parrillero</li>
+      <li><svg viewBox="0 0 24 24"><path d="M3 9l9-5 9 5M5 9v11M19 9v11M3 20h18M5 14h14"/></svg>Deck techado</li>
+      <li><svg viewBox="0 0 24 24"><path d="M12 21v-6M7 15h10l-5-11z"/><path d="M3 21h18"/></svg>Gran patio</li>
+      <li><svg viewBox="0 0 24 24"><path d="M4 20V9h16v11M4 20h16M9 20v-5h6v5M12 12c-1-1 0-2 0-3 1 1 2 2 0 3"/></svg>Living con estufa a leña</li>
       <li><svg viewBox="0 0 24 24"><path d="M4 7h16v10H4zM4 12h16"/></svg>Ropa de cama y toallas</li>
     </ul>
   </section>
