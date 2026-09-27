@@ -399,7 +399,7 @@
       <div class="card">
         <h3>En auto</h3>
         <p>La idea es organizarnos en autos. Se va por la Ruta Interbalnearia hacia Piriápolis y Bella Vista queda antes de llegar.</p>
-        <p class="seats">Nosotros salimos el viernes y tenemos 2 lugares libres. Avisanos en la confirmación.</p>
+        <p class="seats">Nosotros salimos el viernes y tenemos 2 lugares libres. Si querés uno, avisanos por WhatsApp.</p>
         <h3>En ómnibus</h3>
         <p>Desde la Terminal Tres Cruces salen ómnibus hacia Piriápolis que pasan por Bella Vista. Pedile al chofer que te deje en la parada de Bella Vista y avisanos, que te pasamos a buscar.</p>
       </div>
@@ -436,7 +436,7 @@
   <section id="confirmar">
     <span class="eyebrow">Confirmación</span>
     <h2>¿Venís?</h2>
-    <p class="lead">Completá esto y te armamos el mensaje para mandárnoslo por WhatsApp. Nos sirve para repartir camas, autos y comida.</p>
+    <p class="lead">Completá esto y te armamos el mensaje para mandárnoslo por WhatsApp. Nos sirve para organizar las camas y la comida.</p>
     <form id="rsvp" novalidate>
       <div class="field">
         <label for="f-name">Tu nombre (y el de quien venga con vos)</label>
@@ -459,21 +459,10 @@
           <label><input type="checkbox" name="days" id="d-lun" value="Lun 26">Lun 26</label>
         </div>
       </fieldset>
-      <div class="row">
-        <div class="field">
-          <label for="f-people">¿Cuántos son?</label>
-          <input type="number" id="f-people" min="1" max="10" value="1">
-        </div>
-        <div class="field">
-          <label for="f-car">Transporte</label>
-          <select id="f-car">
-            <option value="">Elegí una opción</option>
-            <option>Voy en auto y tengo lugares libres</option>
-            <option>Voy en auto, sin lugares libres</option>
-            <option>Necesito lugar en un auto</option>
-            <option>Voy en ómnibus</option>
-          </select>
-        </div>
+      <div class="field">
+        <label for="f-people">¿Cuántos son?</label>
+        <input type="number" id="f-people" min="1" max="10" value="1" style="max-width: 160px">
+      </div>
       </div>
       <div class="field">
         <label for="f-msg">Un mensaje para nosotros (opcional)</label>
@@ -563,8 +552,6 @@
     if (coming) {
       lines.push("Días: " + days.join(", "));
       lines.push("Somos: " + (document.getElementById("f-people").value || "1"));
-      const car = document.getElementById("f-car").value;
-      if (car) lines.push("Transporte: " + car);
     }
     const msg = document.getElementById("f-msg").value.trim();
     if (msg) lines.push("", msg);
