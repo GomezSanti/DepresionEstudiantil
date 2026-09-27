@@ -94,18 +94,35 @@
 
   /* ---------- Casa ---------- */
   .gallery { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 170px; gap: 10px; }
+  .gallery { grid-auto-flow: dense; }
   .ph {
-    border-radius: 12px; overflow: hidden; position: relative;
-    background: linear-gradient(160deg, var(--sea-soft), #BFD8D2);
-    display: flex; align-items: flex-end; padding: 12px;
+    border-radius: 12px; overflow: hidden; position: relative; border: 0; padding: 12px; cursor: zoom-in;
+    background: var(--sea-soft);
+    display: flex; align-items: flex-end; font: inherit;
   }
-  .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+  .ph:hover img { transform: scale(1.04); }
   .ph .cap {
-    position: relative; background: rgba(255,255,255,.88); color: var(--ink);
+    position: relative; background: rgba(255,255,255,.9); color: var(--ink);
     font-size: .8rem; font-weight: 600; padding: 4px 10px; border-radius: 999px;
   }
   .ph.big { grid-column: span 2; grid-row: span 2; }
   .ph.wide { grid-column: span 2; }
+  .hero-photo { margin: 0; border-radius: 18px; overflow: hidden; aspect-ratio: 16 / 6; max-width: 100%; background: var(--sea-soft); }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 60%; display: block; }
+  @media (max-width: 520px) { .hero-photo { aspect-ratio: 4 / 3; } }
+  .lightbox {
+    position: fixed; inset: 0; z-index: 50; background: rgba(12,26,34,.92);
+    display: grid; grid-template-rows: 1fr auto; gap: 12px;
+    padding: calc(16px + env(safe-area-inset-top, 0px)) 16px calc(16px + env(safe-area-inset-bottom, 0px));
+  }
+  .lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; place-self: center; border-radius: 8px; min-height: 0; }
+  .lb-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #F2F6F4; max-width: 980px; width: 100%; margin-inline: auto; }
+  .lb-bar span { font-weight: 600; }
+  .lb-btn { font: 700 1rem var(--body); background: rgba(242,246,244,.14); color: #F2F6F4; border: 0; border-radius: 999px; padding: 10px 16px; cursor: pointer; }
+  .lb-btn:hover { background: rgba(242,246,244,.26); }
+  .lb-nav { display: flex; gap: 8px; }
+  @media (prefers-reduced-motion: reduce) { .ph img { transition: none; } }
   .amen { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
   .amen li {
     list-style: none; background: var(--paper); border: 1px solid var(--line); border-radius: 12px;
@@ -227,6 +244,7 @@
         <p class="hero-sub">Cumplimos 15 años juntos y lo queremos festejar con ustedes: un fin de semana en una casa en Bella Vista.</p>
       </div>
     </div>
+    <figure class="hero-photo"><img src="fotos/camino-al-mar.jpg" alt="Calle de Bella Vista que baja hasta el mar"></figure>
     <div class="ticket">
       <div><span class="k">Llegada</span><span class="v">Vie 23 oct<small>desde las 12:00</small></span></div>
       <div><span class="k">Reserva hasta</span><span class="v">Lun 26 oct<small>a las 10:00</small></span></div>
@@ -257,16 +275,25 @@
   <section id="casa">
     <span class="eyebrow">La casa</span>
     <h2>Dónde vamos a estar</h2>
-    <p class="lead">Son tres casas en un mismo predio en el balneario Bella Vista: una casa principal y dos cabañas. Acá van las fotos para que se hagan una idea del lugar.</p>
-    <div class="gallery">
-      <div class="ph big"><span class="cap">Casa principal</span></div>
-      <div class="ph"><span class="cap">Living con estufa</span></div>
-      <div class="ph"><span class="cap">Deck techado</span></div>
-      <div class="ph wide"><span class="cap">Parrillero</span></div>
-      <div class="ph"><span class="cap">Dormitorio</span></div>
-      <div class="ph"><span class="cap">Cabañas</span></div>
-      <div class="ph wide"><span class="cap">Patio</span></div>
+    <p class="lead">Son tres casas en un mismo predio en el balneario Bella Vista: una casa principal y dos cabañas. Estas son algunas fotos para que se hagan una idea del lugar.</p>
+    <div class="gallery" id="gallery">
+      <button type="button" class="ph big" data-src="fotos/casa-principal.jpg" data-cap="Casa principal"><img src="fotos/casa-principal.jpg" alt="Casa principal" loading="lazy"><span class="cap">Casa principal</span></button>
+      <button type="button" class="ph" data-src="fotos/living.jpg" data-cap="Living con estufa a leña"><img src="fotos/living.jpg" alt="Living con estufa a leña" loading="lazy"><span class="cap">Living con estufa a leña</span></button>
+      <button type="button" class="ph" data-src="fotos/cocina.jpg" data-cap="Cocina"><img src="fotos/cocina.jpg" alt="Cocina" loading="lazy"><span class="cap">Cocina</span></button>
+      <button type="button" class="ph wide" data-src="fotos/deck-techado.jpg" data-cap="Deck techado"><img src="fotos/deck-techado.jpg" alt="Deck techado" loading="lazy"><span class="cap">Deck techado</span></button>
+      <button type="button" class="ph wide" data-src="fotos/cabanas.jpg" data-cap="Las cabañas"><img src="fotos/cabanas.jpg" alt="Las cabañas" loading="lazy"><span class="cap">Las cabañas</span></button>
+      <button type="button" class="ph wide" data-src="fotos/cabanas-hortensias.jpg" data-cap="Cabañas y hortensias"><img src="fotos/cabanas-hortensias.jpg" alt="Cabañas y hortensias" loading="lazy"><span class="cap">Cabañas y hortensias</span></button>
+      <button type="button" class="ph wide" data-src="fotos/parrillero-noche.jpg" data-cap="Parrillero de noche"><img src="fotos/parrillero-noche.jpg" alt="Parrillero de noche" loading="lazy"><span class="cap">Parrillero de noche</span></button>
+      <button type="button" class="ph" data-src="fotos/parrillero.jpg" data-cap="Parrillero"><img src="fotos/parrillero.jpg" alt="Parrillero" loading="lazy"><span class="cap">Parrillero</span></button>
+      <button type="button" class="ph" data-src="fotos/dormitorio-matrimonial.jpg" data-cap="Dormitorio"><img src="fotos/dormitorio-matrimonial.jpg" alt="Dormitorio" loading="lazy"><span class="cap">Dormitorio</span></button>
+      <button type="button" class="ph" data-src="fotos/dormitorio-cuchetas.jpg" data-cap="Dormitorio con cuchetas"><img src="fotos/dormitorio-cuchetas.jpg" alt="Dormitorio con cuchetas" loading="lazy"><span class="cap">Dormitorio con cuchetas</span></button>
+      <button type="button" class="ph" data-src="fotos/dormitorio-camas.jpg" data-cap="Dormitorio"><img src="fotos/dormitorio-camas.jpg" alt="Dormitorio" loading="lazy"><span class="cap">Dormitorio</span></button>
+      <button type="button" class="ph" data-src="fotos/bano-1.jpg" data-cap="Baño"><img src="fotos/bano-1.jpg" alt="Baño" loading="lazy"><span class="cap">Baño</span></button>
+      <button type="button" class="ph" data-src="fotos/bano-2.jpg" data-cap="Baño"><img src="fotos/bano-2.jpg" alt="Baño" loading="lazy"><span class="cap">Baño</span></button>
+      <button type="button" class="ph wide" data-src="fotos/patio.jpg" data-cap="Patio"><img src="fotos/patio.jpg" alt="Patio" loading="lazy"><span class="cap">Patio</span></button>
+      <button type="button" class="ph wide" data-src="fotos/jardin.jpg" data-cap="Jardín"><img src="fotos/jardin.jpg" alt="Jardín" loading="lazy"><span class="cap">Jardín</span></button>
     </div>
+    <p class="note">Tocá una foto para verla grande.</p>
     <h3>Las tres casas</h3>
     <div class="houses">
       <div class="house"><span class="hname">Casa principal</span><span class="hrooms">2 dormitorios</span><span class="hbath">Baño propio · living con estufa a leña</span></div>
@@ -342,8 +369,8 @@
           <text x="272" y="124" fill="#DCEBE7" font-size="11" font-family="Figtree, sans-serif">Piriápolis</text>
           <text x="84" y="80" fill="#9FC4C0" font-size="10" font-family="Figtree, sans-serif">Ruta Interbalnearia</text>
         </svg>
-        <p id="address">Dirección: <strong style="color:#F2F6F4">a completar</strong></p>
-        <a class="btn" id="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Bella+Vista%2C+Maldonado%2C+Uruguay" target="_blank" rel="noopener">Abrir en Google Maps</a>
+        <p id="address">El pin marca la ubicación exacta del predio en Bella Vista.</p>
+        <a class="btn" id="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=-34.80573272705078%2C-55.354427337646484" target="_blank" rel="noopener">Abrir en Google Maps</a>
       </div>
       <div class="card">
         <h3>En auto</h3>
@@ -448,6 +475,18 @@
   </footer>
 </div>
 
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <img id="lb-img" alt="">
+  <div class="lb-bar">
+    <span id="lb-cap"></span>
+    <div class="lb-nav">
+      <button type="button" class="lb-btn" id="lb-prev" aria-label="Foto anterior">‹</button>
+      <button type="button" class="lb-btn" id="lb-next" aria-label="Foto siguiente">›</button>
+      <button type="button" class="lb-btn" id="lb-close">Cerrar</button>
+    </div>
+  </div>
+</div>
+
 <script>
   // Número de WhatsApp que recibe las confirmaciones (formato internacional, sin + ni espacios, ej: 59899123456).
   // Si queda vacío, WhatsApp abre para elegir el contacto.
@@ -526,4 +565,32 @@
       note.textContent = "Texto seleccionado: copialo con Ctrl+C o mantené apretado.";
     }
   });
+
+  // Galería ampliada
+  (function () {
+    const tiles = [...document.querySelectorAll("#gallery .ph")];
+    const box = document.getElementById("lightbox");
+    const img = document.getElementById("lb-img");
+    const cap = document.getElementById("lb-cap");
+    let i = 0, last = null;
+    function show(n) {
+      i = (n + tiles.length) % tiles.length;
+      img.src = tiles[i].dataset.src;
+      img.alt = tiles[i].dataset.cap;
+      cap.textContent = tiles[i].dataset.cap + " · " + (i + 1) + " de " + tiles.length;
+    }
+    function open(n) { last = document.activeElement; show(n); box.hidden = false; document.getElementById("lb-close").focus(); }
+    function close() { box.hidden = true; if (last) last.focus(); }
+    tiles.forEach((t, n) => t.addEventListener("click", () => open(n)));
+    document.getElementById("lb-prev").addEventListener("click", () => show(i - 1));
+    document.getElementById("lb-next").addEventListener("click", () => show(i + 1));
+    document.getElementById("lb-close").addEventListener("click", close);
+    box.addEventListener("click", (e) => { if (e.target === box) close(); });
+    document.addEventListener("keydown", (e) => {
+      if (box.hidden) return;
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowLeft") show(i - 1);
+      if (e.key === "ArrowRight") show(i + 1);
+    });
+  })();
 </script>
